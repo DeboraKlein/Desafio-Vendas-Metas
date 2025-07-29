@@ -4,6 +4,7 @@ Este documento apresenta os principais gráficos, indicadores e painéis desenvo
 
 ---
 
+
 ## 📈 Medidas DAX — Cartão de Meta e Variação YoY
 
 Visual criado com base em medidas aplicadas ao plano de fundo como cartão analítico dinâmico:
@@ -102,6 +103,8 @@ Formatado com ícones ou cores: 🟢 alta no faturamento, 🔴 queda no desempen
 ## 🎯 Cartão de Atingimento da Meta
 
 Indicador fundamental que expressa o quanto do objetivo foi cumprido em relação ao faturamento.
+
+
 
 ---
 
