@@ -8,7 +8,7 @@ Este documento detalha as etapas de tratamento e limpeza aplicadas às bases do 
 
 ### Problemas detectados:
 - Linhas com apenas `Marca: Nome` sem estrutura tabular.
-- Produtos com aspas e vírgulas embutidas.
+- Nome dos Produtos com hashtag e ID do Produtos juntos na mesma coluna: 'Produto #116 - Adventure Works 20" CRT TV E15 Silver'
 - Subcategorias combinadas em texto: `Subcategoria #ID – Nome`.
 
 ### Etapas aplicadas:
