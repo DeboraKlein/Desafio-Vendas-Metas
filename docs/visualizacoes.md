@@ -28,7 +28,9 @@ Utiliza TREATAS para alinhar anos entre dCalendario e fMetasConsolidadas, devido
 Filtra categorias para excluir o agregado "Total"
 
 Representa o somatório de metas consolidadas por ano
-% Variação Meta YoY = 
+
+
+### % Variação Meta YoY = 
 VAR HasYearSelected = NOT(ISFILTERED(dCalendario[Ano]))
 VAR MetaAtual = [Meta Total por Ano]
 VAR MetaAnterior = [Meta LY]
@@ -42,6 +44,18 @@ IF(
         0
     )
 )
+
+Verifica se há filtro de ano ativo
+
+Calcula variação percentual entre metas do ano atual e anterior (YoY)
+
+Protege contra divisões inválidas ou faltas de contexto
+
+Aplicado com formatação condicional:
+
+🔴 vermelho para quedas
+
+🟢 verde para crescimento positivo
 
 
 - **Gráficos**:
