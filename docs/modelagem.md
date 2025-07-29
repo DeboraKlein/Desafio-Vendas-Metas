@@ -22,3 +22,7 @@ A tabela `fMetasConsolidadas` apresenta metas de faturamento por ano, categoria 
 - Conferência via Diagrama de Relacionamentos.
 - Testes com medidas de desempenho para garantir integridade.
 
+![Modelagem Power BI](<img width="1920" height="1019" alt="Power BI Desktop 29_07_2025 13_14_39" src="https://github.com/user-attachments/assets/fc87c175-e1b2-4e69-8dab-ee044016830e" />
+)
+> Estrutura de modelagem em estrela com tabela fato central (`fVendas`) e dimensões conectadas. Inclui também tabela `fMetasConsolidadas` tratada via DAX.
+
