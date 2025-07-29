@@ -4,14 +4,45 @@ Este documento apresenta os principais gráficos, indicadores e painéis desenvo
 
 ---
 
-## 📊 Painel Principal: Visão Geral
+## 📈 Medidas DAX — Cartão de Meta e Variação YoY
 
-### Componentes:
-- **Indicadores (KPIs)**:
-  - Total de Vendas
-  - Meta Alcançada (%)
-  - Crescimento Mensal
-  - Ticket Médio
+Visual criado com base em medidas aplicadas ao plano de fundo como cartão analítico dinâmico:
+
+---
+
+### 🎯 `Meta Total por Ano`
+
+```DAX
+Meta Total por Ano = 
+CALCULATE(
+    SUM('fMetasConsolidadas'[Value]),
+    'fMetasConsolidadas'[Categoria] <> "Total",
+    TREATAS(
+        VALUES(dCalendario[Ano]), 
+        'fMetasConsolidadas'[Ano]
+    )  
+)
+
+Utiliza TREATAS para alinhar anos entre dCalendario e fMetasConsolidadas, devido à ausência de relacionamento físico
+
+Filtra categorias para excluir o agregado "Total"
+
+Representa o somatório de metas consolidadas por ano
+% Variação Meta YoY = 
+VAR HasYearSelected = NOT(ISFILTERED(dCalendario[Ano]))
+VAR MetaAtual = [Meta Total por Ano]
+VAR MetaAnterior = [Meta LY]
+RETURN
+IF(
+    HasYearSelected || ISBLANK(MetaAtual) || ISBLANK(MetaAnterior),
+    0,
+    DIVIDE(
+        MetaAtual - MetaAnterior,
+        MetaAnterior,
+        0
+    )
+)
+
 
 - **Gráficos**:
   - Barras por Categoria e Subcategoria
