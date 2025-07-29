@@ -1,61 +1,41 @@
-# Desafio Vendas x Metas – Power BI
+## 🔍 Análises Macro
 
-Este repositório apresenta a solução para o desafio de análise de vendas versus metas, com foco em visualização estratégica através do Power BI. O objetivo foi transformar uma base de dados diversa e desorganizada em um painel interativo, gerador de insights relevantes para decisões comerciais.
+O painel desenvolvido foi estruturado para responder de forma clara e objetiva às questões abaixo, permitindo navegação fluida e extração de insights por meio de filtros dinâmicos.
 
-## 🧩 Objetivo do Projeto
+### 🎯 Exploratório
 
-Criar um dashboard no Power BI que:
-- Compare o faturamento real com as metas por continente, categoria e ao longo do tempo.
-- Apresente evolução de desempenho entre os anos de 2017, 2018 e até março de 2019.
-- Destaque produtos, subcategorias e regiões com maior representatividade.
+- **Qual foi o faturamento de todo o período?**
+- **Qual era a meta de faturamento deste período?**
+- **Qual foi o percentual de atendimento da meta?**
+- **Qual foi a categoria com maior faturamento?**
+- **O quanto esta categoria representa no total do faturamento, em percentual?**
+- **Quais foram as 3 subcategorias com maior faturamento?**
+- **Considerando estas mesmas 3 subcategorias, indique os continentes, do maior para o menor faturamento.**
 
-## 📁 Fontes de Dados
+### 📈 Comparativo Entre os Anos (2017 vs 2018)
 
-- `Cliente.xlsx`: Cadastro de clientes com dados básicos.
-- `Vendas.xlsx`: Transações entre clientes e produtos com data e valor.
-- `Metas.xlsx`: Metas de vendas por categoria e localização.
-- `Produto.csv`: Produtos com marca e subcategoria (precisou tratamento especial).
-- `Localizacao.csv`: Hierarquia geográfica desestruturada.
-- `Subcategoria.json`: Subcategorias vinculadas a suas categorias principais.
-
-## 🔧 Tratamento dos Dados
-
-Foi necessário aplicar limpeza e transformação, incluindo:
-- Reconstrução da hierarquia de localização (continente → país → estado → cidade).
-- Extração da marca e subcategoria dos produtos via lógica condicional.
-- Integração do JSON de subcategorias com o CSV dos produtos.
-- Remoção de linhas nulas, reorganização de colunas e padronização de formatos.
-
-As transformações foram feitas via Power Query no Power BI, para garantir reusabilidade e consistência.
-
-## 🧠 Modelagem e Relações
-
-As tabelas foram relacionadas conforme chaves lógicas:
-- Cliente → Vendas
-- Produto → Vendas
-- Subcategoria → Produto
-- Localização → Cliente e Metas
-- Metas → Continente + Categoria
-
-## 📊 Visualizações Criadas
-
-- **Visão Geral de Performance:** Metas vs Vendas com destaque por continente.
-- **Ranking de Subcategorias:** Produtos que mais vendem por região.
-- **Evolução Temporal:** Comparativo ano a ano com filtros dinâmicos.
-- **Análise por Categoria e Localização:** Estratégias para expansão ou foco regional.
-
-## 📌 Principais Insights
-
-- Produtos da categoria *X* se destacam em *Y continente* com alta conversão.
-- Algumas regiões têm metas superestimadas ou abaixo do histórico de faturamento.
-- Subcategorias *Z* apresentam queda recorrente no primeiro trimestre.
-
-## ⚙️ Como Utilizar
-
-1. Baixe o arquivo `.pbix` na pasta `/powerbi`.
-2. Atualize os dados via “Atualizar” no Power BI, mantendo os nomes dos arquivos.
-3. Explore os filtros e páginas do dashboard para gerar insights personalizados.
+- **Qual foi a variação entre o faturamento de 2018 e o ano anterior?**
+- **A variação entre o faturamento de 2018 e o ano anterior foi positiva em todas as subcategorias?**
+- **Qual foi o percentual de variação de representatividade entre 2018 e o ano anterior na subcategoria *Desktops*?**
+- **Qual foi o continente responsável por essa queda de faturamento na subcategoria *Desktops*?**
+- **Qual foi a categoria com o maior faturamento em 2018? Qual o valor em R$?**
+- **Qual foi a categoria com a maior variação percentual entre 2017 e 2018?**
+- **Quais foram as 3 subcategorias com maior faturamento em 2018?**
+- **São as mesmas subcategorias em destaque considerando todos os períodos?**
 
 ---
 
+## 🧠 Solução Técnica: Evitando Duplicações com TREATAS
+
+Durante o desenvolvimento, foi identificado que as metas estavam sendo duplicadas ao aplicar filtros por Ano. Isso ocorreu pela ausência de relacionamento direto entre a tabela de calendário (`dCalendario`) e a tabela de metas consolidadas (`fMetasConsolidadas`).
+
+Para solucionar, foi utilizada a função `TREATAS` no DAX:
+
+```DAX
+Meta Total por Ano = 
+CALCULATE(
+    SUM('fMetasConsolidadas'[Value]),
+    'fMetasConsolidadas'[Categoria] <> "Total",
+    TREATAS(VALUES(dCalendario[Ano]), 'fMetasConsolidadas'[Ano])  
+)
 
