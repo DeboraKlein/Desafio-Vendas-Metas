@@ -34,8 +34,8 @@ O painel desenvolvido foi estruturado para responder de forma clara e objetiva �
 ## 🖼️ Ilustrações do Painel
 
 ### Preview 1
-![Screenshot do Dashboard - Visão Geral](<img width="1920" height="1020" alt="Page 1 - TesteDirecty - Power BI - Google Chrome 31_07_2025 12_22_58" src="https://github.com/user-attachments/assets/55b5a87c-2c37-4e18-bb89-d1ce0d12bc33" />
-)
+![Screenshot do Dashboard - Visão Geral](https://github.com/user-attachments/assets/55b5a87c-2c37-4e18-bb89-d1ce0d12bc33)
+
 
 ### Preview 2
 ![Screenshot do Dashboard - Análise Comparativa](https://URL_DA_IMAGEM_2.com)
