@@ -39,7 +39,8 @@ O painel desenvolvido foi estruturado para responder de forma clara e objetiva �
 
 
 ### Preview 2
-![Screenshot do Dashboard - Análise Comparativa](https://URL_DA_IMAGEM_2.com)
+![Screenshot do Dashboard - Análise Comparativa](https://github.com/user-attachments/assets/1608bd87-b6d3-4e16-bde0-a5a541f254d1
+)
 
 ---
 
