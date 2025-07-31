@@ -25,6 +25,22 @@ O painel desenvolvido foi estruturado para responder de forma clara e objetiva �
 
 ---
 
+## 🌐 Link Público do Dashboard
+
+🔗 [Acesse o dashboard publicado no Power BI Online]([https://SEU_LINK_AQUI.com](https://app.powerbi.com/view?r=eyJrIjoiNDY1ZTVkMTEtODU4ZC00NjlkLTg2MWUtMmQxZGRhNzdlYmFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9))
+
+---
+
+## 🖼️ Ilustrações do Painel
+
+### Preview 1
+![Screenshot do Dashboard - Visão Geral](https://URL_DA_IMAGEM_1.com)
+
+### Preview 2
+![Screenshot do Dashboard - Análise Comparativa](https://URL_DA_IMAGEM_2.com)
+
+---
+
 ## 🧠 Solução Técnica: Evitando Duplicações com TREATAS
 
 Durante o desenvolvimento, foi identificado que as metas estavam sendo duplicadas ao aplicar filtros por Ano. Isso ocorreu pela ausência de relacionamento direto entre a tabela de calendário (`dCalendario`) e a tabela de metas consolidadas (`fMetasConsolidadas`).
@@ -39,18 +55,5 @@ CALCULATE(
     TREATAS(VALUES(dCalendario[Ano]), 'fMetasConsolidadas'[Ano])  
 )
 
-## 🌐 Link Público do Dashboard
-
-🔗 [Acesse o dashboard publicado no Power BI Online](https://SEU_LINK_AQUI.com)
-
----
-
-## 🖼️ Ilustrações do Painel
-
-### Preview 1
-![Screenshot do Dashboard - Visão Geral](https://URL_DA_IMAGEM_1.com)
-
-### Preview 2
-![Screenshot do Dashboard - Análise Comparativa](https://URL_DA_IMAGEM_2.com)
 
 
