@@ -34,7 +34,8 @@ O painel desenvolvido foi estruturado para responder de forma clara e objetiva �
 ## 🖼️ Ilustrações do Painel
 
 ### Preview 1
-![Screenshot do Dashboard - Visão Geral](https://github.com/user-attachments/assets/55b5a87c-2c37-4e18-bb89-d1ce0d12bc33)
+![Screenshot do Dashboard - Visão Geral](https://github.com/user-attachments/assets/700f4273-4ff0-4183-8b6c-0b1d4eeab054
+)
 
 
 ### Preview 2
