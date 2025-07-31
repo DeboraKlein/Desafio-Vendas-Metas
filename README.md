@@ -39,3 +39,18 @@ CALCULATE(
     TREATAS(VALUES(dCalendario[Ano]), 'fMetasConsolidadas'[Ano])  
 )
 
+## 🌐 Link Público do Dashboard
+
+🔗 [Acesse o dashboard publicado no Power BI Online](https://SEU_LINK_AQUI.com)
+
+---
+
+## 🖼️ Ilustrações do Painel
+
+### Preview 1
+![Screenshot do Dashboard - Visão Geral](https://URL_DA_IMAGEM_1.com)
+
+### Preview 2
+![Screenshot do Dashboard - Análise Comparativa](https://URL_DA_IMAGEM_2.com)
+
+
