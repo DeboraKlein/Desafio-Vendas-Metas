@@ -2,20 +2,17 @@
 
 # Visualizações e KPIs – Power BI
 
-Este documento apresenta os principais gráficos, indicadores e painéis desenvolvidos no projeto "Desafio Vendas x Metas", focando em performance, metas e insights estratégicos.
-````
----
 
-````
+Este documento apresenta os principais gráficos, indicadores e painéis desenvolvidos no projeto "Desafio Vendas x Metas", focando em performance, metas e insights estratégicos.
+
 ## 📈 Medidas DAX — Cartão de Meta e Variação YoY
+---
 
 Visual criado com base em medidas aplicadas ao plano de fundo como cartão analítico dinâmico:
 
----
-
 ### 🎯 `Meta Total por Ano`
+````
 
-```
 Meta Total por Ano = 
 CALCULATE(
     SUM('fMetasConsolidadas'[Value]),
@@ -61,10 +58,10 @@ Aplicado com formatação condicional:
 🟢 verde para crescimento positivo
 
 ## 💰 Cartão de Faturamento Total + Crescimento YoY
+---
 
 Visual analítico composto por duas medidas principais: faturamento acumulado e variação ano sobre ano.
 
----
 
 ### 📌 `Faturamento Total`
 
@@ -104,13 +101,12 @@ Só retorna resultado quando há um único ano selecionado
 
 Formatado com ícones ou cores: 🟢 alta no faturamento, 🔴 queda no desempenho
 
+
 ## 🎯 Cartão de Atingimento da Meta
+---
 
 Indicador fundamental que expressa o quanto do objetivo foi cumprido em relação ao faturamento.
 
-
-
----
 
 ### 📊 `% Atingimento da Meta`
 
@@ -125,7 +121,8 @@ Ideal para destacar progresso em dashboards executivos
 
 Pode ser combinado com formatação condicional ou barras de progresso 📈
 
-## 💸 Cartão de Lucro Total
+
+### 💸 Cartão de Lucro Total
 
 Indicador básico que mostra o total de lucro gerado pelas vendas.
 
@@ -144,11 +141,12 @@ Pode ser filtrado por período, categoria, região etc.
 
 Utilizado para avaliação direta da rentabilidade 📊
 
+
 ## 📊 Gráfico de Barras Horizontais — % Faturamento por Subcategoria
+---
 
 Indicador visual para avaliar a representatividade de cada subcategoria no total de faturamento, com barras horizontais para melhor leitura comparativa.
 
----
 
 ### 🧮 `% Faturamento SubCategoria`
 
@@ -180,11 +178,12 @@ ALL remove filtro de subcategoria no denominador, garantindo cálculo percentual
 
 A medida deve ser visualizada com barras horizontais por subcategoria, ordenadas por valor decrescente para melhor análise 📉
 
+
 ## 🏆 Cartão: Categoria Campeã — Destaque no Faturamento
+---
 
 Esse visual revela qual categoria lidera o faturamento e quantifica sua representatividade no total, trazendo à tona o "MVP" comercial do período.
 
----
 
 ### 🥇 `Categoria Campeã`
 
@@ -249,11 +248,11 @@ Calcula o faturamento da categoria vencedora no contexto total
 
 Ideal para cartão com visual narrativo, estilo Enlighten: “A categoria com maior faturamento é [#Categoria Campeã] e representa [#% Categoria Campeã]% do faturamento total.”
 
+
 ## 🍩 Gráfico de Rosca — % Faturamento por Categoria
+---
 
 Visual analítico que mostra a representatividade de cada categoria no total de faturamento. Ideal para destacar “quem leva qual fatia do bolo”!
-
----
 
 ### 🧮 `% Faturamento Categoria`
 
@@ -285,11 +284,11 @@ DIVIDE protege contra divisões por zero
 
 Ideal para visualização em gráfico de rosca (ou pizza), destacando cada categoria com cor própria
 
+
 ## 🌍 Matriz de Receita — Continente x Subcategoria
+---
 
 Visual interativo que cruza a dimensão geográfica (continente) com a dimensão comercial (subcategoria), revelando padrões de faturamento por região e categoria de produto.
-
----
 
 ### 📌 `Faturamento Total`
 
@@ -304,11 +303,11 @@ Usado como valor na célula da matriz
 
 Pode ter filtro de tempo aplicado (mês, ano, trimestre)
 
+
 ## 🔍 Tooltip Vinculado à Matriz — Visão Detalhada por Subcategoria
+---
 
 O tooltip fornece um aprofundamento analítico diretamente sobre a matriz principal `Continente x Subcategoria`, revelando volume, valor médio e variação anual de faturamento.
-
----
 
 ### 📐 Contexto do Visual
 
@@ -345,7 +344,8 @@ DIVIDE(
 ````
 Mostra o valor médio por transação, útil para insights sobre precificação e margem
 
-📊 Matriz YoY no Tooltip
+### 📊 Matriz YoY no Tooltip
+
 % Cresc YoY por Subcategoria
 ````
 
@@ -371,11 +371,10 @@ Avaliação comparativa do faturamento por subcategoria em relação ao ano ante
 
 Permite identificar crescimento ou retração diretamente no contexto do tooltip
 
+
 ## 📜 Scroller — Subcategorias e Faturamento Relativo
-
+--- 
 Visual em formato de **scroller horizontal** ou **gráfico de lista vertical** que permite navegação fluida entre subcategorias, exibindo tanto o valor total quanto a representatividade percentual de cada uma.
-
----
 
 ### 📦 `Faturamento Total`
 
@@ -387,7 +386,7 @@ Soma direta da coluna Faturamento da tabela de fatos
 
 Exibe o valor bruto gerado por subcategoria
 
-📊 % Faturamento SubCategoria
+### 📊 % Faturamento SubCategoria
 ````
 
 % Faturamento SubCategoria = 
@@ -415,11 +414,11 @@ SUMX calcula o faturamento por linha: Preço × Quantidade − Desconto
 
 ALL remove o filtro da subcategoria no denominador, garantindo cálculo proporcional
 
+
 ## 🌳 Decomposition Tree — Faturamento por Hierarquia
+--- 
 
 Visual interativo que permite explorar o faturamento de forma hierárquica, partindo de categoria até subcategoria.
-
----
 
 ### 📊 Medida Base: `Faturamento Total`
 
@@ -432,14 +431,14 @@ Mede o faturamento bruto por item vendido
 
 É o campo raiz do Decomposition Tree
 
+
 ## 🌐 Mapa com Bolhas — Crescimento Acumulado por Continente
+---
 
 Visual que mostra a **evolução de faturamento** ano a ano em diferentes regiões geográficas. Cada bolha representa um continente, com tamanho proporcional ao crescimento percentual.
 
----
 
 ### 📈 Medida: `Crescimento Acumulado Anual`
-
 
 Crescimento Acumulado Anual = 
 VAR Crescimento = 
@@ -452,15 +451,15 @@ Usa HASONEVALUE para garantir que o cálculo é feito por ano específico
 
 COALESCE previne retorno vazio
 
+
 ## 🎬 Enlighten Story — Categoria com Maior Variação de Faturamento
+---
 
 História visual que revela **qual categoria teve a maior mudança percentual** no faturamento entre os anos de 2017 e 2018. Ideal para relatórios gerenciais ou dashboards executivos.
 
----
-
 ### 📐 Medida 1 — `Variação % Categoria 2018vs2017`
+````
 
-```
 Variação % Categoria 2018vs2017 = 
 VAR Percentual2017 = 
     CALCULATE(
@@ -483,11 +482,11 @@ Baseada em uma medida prévia: [% Faturamento Categoria]
 
 Retorna variação positiva ou negativa
 
+
 ## 🎥 Enlighten Story — Queda nas Vendas de Desktops por Continente
+---
 
 Narrativa visual que destaca o mercado mais afetado pela queda de faturamento de desktops, com base na análise ano a ano e impacto na representatividade global.
-
----
 
 ### 📉 Medida 1 — `Variação Representatividade Desktops`
 
@@ -542,14 +541,16 @@ Usa TOPN com ordenação crescente para capturar a maior queda
 
 Retorna o nome do continente
 
-🗣️ Frase Narrativa para o Enlighten Story
+## 🗣️ Frase Narrativa para o Enlighten Story
+---
+
 "Entre 2017 e 2018, vendas de Desktops recuaram #Variação Representatividade Desktops, influenciadas principalmente pelo continente #Continente Maior Queda Desktops."
 
 ## 🧭 Controles de Navegação e Filtro Temporal
+---
 
 Componentes de interatividade que facilitam a exploração do relatório por ano e seção, mantendo a experiência fluida e intuitiva.
 
----
 
 ### 📅 Slicer de Ano
 
@@ -564,10 +565,9 @@ Componentes de interatividade que facilitam a exploração do relatório por ano
 ---
 
 ## 🧭 Controles de Navegação e Filtro Temporal
+---
 
 Componentes de interatividade que facilitam a exploração do relatório por ano e seção, mantendo a experiência fluida e intuitiva.
-
----
 
 ### 📅 Slicer de Ano
 
@@ -595,12 +595,6 @@ Componentes de interatividade que facilitam a exploração do relatório por ano
   - Feedback visual: cor ou borda ao passar o mouse
   - Posicionamento: área superior ou rodapé fixo
 
----
-
-
-
-
-
 - **Gráficos**:
   - Barras por Categoria e Subcategoria
   - Mapa por Localização
@@ -611,39 +605,37 @@ Componentes de interatividade que facilitam a exploração do relatório por ano
 
 > Objetivo: Proporcionar uma visão macro da performance com possibilidade de drill-down.
 
----
-
 ## 🔍 Painel: Desempenho por Localização
+---
 
 - Mapa temático com intensidade de vendas por região
 - Tabela com ranking de cidades/estados por volume e metas
 - Indicador de conversão por região (% de meta atingida)
 
----
 
 ## 🧑‍🤝‍🧑 Painel: Perfil de Clientes
+---
 
 - Gráfico de pirâmide etária (se houver dados de idade)
 - Distribuição por gênero
 - Segmentação por localização e volume de compras
 
----
 
 ## 🧠 Painel: Insights e Tendências
+---
 
 - Gráfico de dispersão: Ticket Médio × Volume de Vendas
 - Série temporal de metas x vendas
 - Gráfico de Pareto para identificar produtos mais rentáveis
 
----
 
 ## 🎨 Design e UX
+---
 
 - Cores baseadas em contraste para fácil leitura
 - Ícones intuitivos e layout responsivo
 - Uso de tooltip e drill-through para experiência aprofundada
 
----
 
 📌 As visualizações foram pensadas para contar a história dos dados de forma clara, interativa e estratégica. Cada painel responde a uma pergunta de negócio e facilita a tomada de decisões.
 ````
