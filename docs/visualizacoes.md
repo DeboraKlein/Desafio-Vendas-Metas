@@ -1,10 +1,12 @@
+
+
 # Visualizações e KPIs – Power BI
 
 Este documento apresenta os principais gráficos, indicadores e painéis desenvolvidos no projeto "Desafio Vendas x Metas", focando em performance, metas e insights estratégicos.
-
+````
 ---
 
-
+````
 ## 📈 Medidas DAX — Cartão de Meta e Variação YoY
 
 Visual criado com base em medidas aplicadas ao plano de fundo como cartão analítico dinâmico:
@@ -13,7 +15,7 @@ Visual criado com base em medidas aplicadas ao plano de fundo como cartão anal�
 
 ### 🎯 `Meta Total por Ano`
 
-```DAX
+```
 Meta Total por Ano = 
 CALCULATE(
     SUM('fMetasConsolidadas'[Value]),
@@ -23,13 +25,13 @@ CALCULATE(
         'fMetasConsolidadas'[Ano]
     )  
 )
-
+````
 Utiliza TREATAS para alinhar anos entre dCalendario e fMetasConsolidadas, devido à ausência de relacionamento físico
 
 Filtra categorias para excluir o agregado "Total"
 
 Representa o somatório de metas consolidadas por ano
-
+````
 
 % Variação Meta YoY = 
 VAR HasYearSelected = NOT(ISFILTERED(dCalendario[Ano]))
@@ -45,7 +47,7 @@ IF(
         0
     )
 )
-
+````
 Verifica se há filtro de ano ativo
 
 Calcula variação percentual entre metas do ano atual e anterior (YoY)
@@ -66,7 +68,7 @@ Visual analítico composto por duas medidas principais: faturamento acumulado e 
 
 ### 📌 `Faturamento Total`
 
-```DAX
+```
 Faturamento Total = 
 SUM(fVendas[Faturamento])
 Soma simples da coluna Faturamento na tabela de fatos fVendas
@@ -92,6 +94,8 @@ IF(
     COALESCE(vCrescimento, 0),
     0
 )
+
+````
 Compara faturamento atual com o de 12 meses atrás usando DATEADD
 
 Usa DIVIDE para evitar erros de divisão por zero
@@ -110,9 +114,11 @@ Indicador fundamental que expressa o quanto do objetivo foi cumprido em relaçã
 
 ### 📊 `% Atingimento da Meta`
 
-```DAX
+```
 % Atingimento da Meta = 
 [Faturamento Total] / [Meta Total por Ano]
+
+````
 Relaciona o faturamento atual com o valor alvo anual
 
 Ideal para destacar progresso em dashboards executivos
@@ -127,9 +133,11 @@ Indicador básico que mostra o total de lucro gerado pelas vendas.
 
 ### 📌 `Lucro Total`
 
-```DAX
+```
 Lucro Total = 
 SUM(fVendas[LucroVenda])
+
+````
 Realiza a soma de todos os valores da coluna LucroVenda na tabela fVendas
 
 Pode ser filtrado por período, categoria, região etc.
@@ -144,7 +152,7 @@ Indicador visual para avaliar a representatividade de cada subcategoria no total
 
 ### 🧮 `% Faturamento SubCategoria`
 
-```DAX
+```
 % Faturamento SubCategoria = 
 DIVIDE(
     CALCULATE(
@@ -162,6 +170,8 @@ DIVIDE(
     ),
     0
 )
+
+````
 SUMX é usado para calcular o faturamento líquido (preço * quantidade - desconto)
 
 CALCULATE aplica o contexto de filtro para cada subcategoria
@@ -178,7 +188,7 @@ Esse visual revela qual categoria lidera o faturamento e quantifica sua represen
 
 ### 🥇 `Categoria Campeã`
 
-```DAX
+```
 Categoria Campeã = 
 CALCULATE(
     MAXX(
@@ -201,6 +211,8 @@ CALCULATE(
         dSubcategoria[Categoria]
     )
 )
+
+````
 Encontra a categoria com maior faturamento líquido
 
 TOPN(1) busca o primeiro colocado, ordenado de forma decrescente
@@ -208,7 +220,7 @@ TOPN(1) busca o primeiro colocado, ordenado de forma decrescente
 SUMMARIZE prepara a agregação por categoria
 
 MAXX extrai o nome da vencedora
-
+````
 % Categoria Campeã = 
 VAR CategoriaTop = [Categoria Campeã]
 
@@ -231,6 +243,8 @@ VAR FaturamentoTotal =
 
 RETURN
 DIVIDE(FaturamentoTop, FaturamentoTotal)
+
+````
 Calcula o faturamento da categoria vencedora no contexto total
 
 Ideal para cartão com visual narrativo, estilo Enlighten: “A categoria com maior faturamento é [#Categoria Campeã] e representa [#% Categoria Campeã]% do faturamento total.”
@@ -243,7 +257,7 @@ Visual analítico que mostra a representatividade de cada categoria no total de 
 
 ### 🧮 `% Faturamento Categoria`
 
-```DAX
+```
 % Faturamento Categoria = 
 DIVIDE(
     CALCULATE(
@@ -261,6 +275,8 @@ DIVIDE(
     ),
     0
 )
+
+````
 O SUMX calcula o faturamento líquido: Preço × Quantidade − Desconto
 
 CALCULATE aplica o filtro da categoria atual e remove no denominador para obter a proporção
@@ -277,9 +293,11 @@ Visual interativo que cruza a dimensão geográfica (continente) com a dimensão
 
 ### 📌 `Faturamento Total`
 
-```DAX
+```
 Faturamento Total = 
 SUM(fVendas[Faturamento])
+
+````
 Cálculo direto da soma de faturamento
 
 Usado como valor na célula da matriz
@@ -309,7 +327,7 @@ O tooltip fornece um aprofundamento analítico diretamente sobre a matriz princi
 
 #### 📦 `Qtd Vendida`
 
-```DAX
+```
 Qtd Vendida = 
 SUM(fVendas[Quantidade])
 Reflete o volume total de unidades vendidas para o contexto selecionado
@@ -323,10 +341,13 @@ DIVIDE(
     COUNTROWS(fVendas),
     0
 )
+
+````
 Mostra o valor médio por transação, útil para insights sobre precificação e margem
 
 📊 Matriz YoY no Tooltip
 % Cresc YoY por Subcategoria
+````
 
 % Cresc YoY = 
 VAR vFaturamento_ano_anterior = 
@@ -345,7 +366,7 @@ IF(
     COALESCE(vCrescimento, 0),
     0
 )
-
+````
 Avaliação comparativa do faturamento por subcategoria em relação ao ano anterior
 
 Permite identificar crescimento ou retração diretamente no contexto do tooltip
@@ -358,14 +379,16 @@ Visual em formato de **scroller horizontal** ou **gráfico de lista vertical** q
 
 ### 📦 `Faturamento Total`
 
-```DAX
+```
 Faturamento Total = 
 SUM(fVendas[Faturamento])
+````
 Soma direta da coluna Faturamento da tabela de fatos
 
 Exibe o valor bruto gerado por subcategoria
 
 📊 % Faturamento SubCategoria
+````
 
 % Faturamento SubCategoria = 
 DIVIDE(
@@ -384,6 +407,8 @@ DIVIDE(
     ),
     0
 )
+
+````
 Representa a participação percentual da subcategoria no faturamento líquido total
 
 SUMX calcula o faturamento por linha: Preço × Quantidade − Desconto
@@ -398,9 +423,11 @@ Visual interativo que permite explorar o faturamento de forma hierárquica, part
 
 ### 📊 Medida Base: `Faturamento Total`
 
-```DAX
+```
 Faturamento Total = 
 SUM(fVendas[Faturamento])
+
+````
 Mede o faturamento bruto por item vendido
 
 É o campo raiz do Decomposition Tree
@@ -413,7 +440,7 @@ Visual que mostra a **evolução de faturamento** ano a ano em diferentes regiõ
 
 ### 📈 Medida: `Crescimento Acumulado Anual`
 
-```DAX
+
 Crescimento Acumulado Anual = 
 VAR Crescimento = 
     DIVIDE(
@@ -433,7 +460,7 @@ História visual que revela **qual categoria teve a maior mudança percentual** 
 
 ### 📐 Medida 1 — `Variação % Categoria 2018vs2017`
 
-```DAX
+```
 Variação % Categoria 2018vs2017 = 
 VAR Percentual2017 = 
     CALCULATE(
@@ -449,6 +476,7 @@ VAR Percentual2018 =
 
 RETURN
     Percentual2018 - Percentual2017
+````
 Compara a participação percentual da categoria no faturamento total entre os dois anos
 
 Baseada em uma medida prévia: [% Faturamento Categoria]
@@ -463,7 +491,7 @@ Narrativa visual que destaca o mercado mais afetado pela queda de faturamento de
 
 ### 📉 Medida 1 — `Variação Representatividade Desktops`
 
-```DAX
+```
 Variação Representatividade Desktops = 
 VAR Rep2018 = 
     CALCULATE(
@@ -479,11 +507,13 @@ VAR Rep2017 =
 
 RETURN
 DIVIDE(Rep2018 - Rep2017, Rep2017)
+````
 Mede a mudança percentual na participação dos Desktops dentro do faturamento total
 
 Usa uma medida pré-existente: % Representatividade Desktops
 
 Valor negativo indica perda de relevância
+````
 
 Continente Maior Queda Desktops = 
 CALCULATE(
@@ -505,6 +535,7 @@ CALCULATE(
         ASC
     )
 )
+````
 Cria uma tabela de variação absoluta no faturamento por continente
 
 Usa TOPN com ordenação crescente para capturar a maior queda
@@ -615,4 +646,5 @@ Componentes de interatividade que facilitam a exploração do relatório por ano
 ---
 
 📌 As visualizações foram pensadas para contar a história dos dados de forma clara, interativa e estratégica. Cada painel responde a uma pergunta de negócio e facilita a tomada de decisões.
+````
 
