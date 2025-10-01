@@ -1,8 +1,8 @@
-## 🔍 Análises Macro
+##  Análises Macro
 
 O painel desenvolvido foi estruturado para responder de forma clara e objetiva às questões abaixo, permitindo navegação fluida e extração de insights por meio de filtros dinâmicos.
 
-### 🎯 Exploratório
+###  Exploratório
 
 - **Qual foi o faturamento de todo o período?**
 - **Qual era a meta de faturamento deste período?**
@@ -12,7 +12,7 @@ O painel desenvolvido foi estruturado para responder de forma clara e objetiva �
 - **Quais foram as 3 subcategorias com maior faturamento?**
 - **Considerando estas mesmas 3 subcategorias, indique os continentes, do maior para o menor faturamento.**
 
-### 📈 Comparativo Entre os Anos (2017 vs 2018)
+###  Comparativo Entre os Anos (2017 vs 2018)
 
 - **Qual foi a variação entre o faturamento de 2018 e o ano anterior?**
 - **A variação entre o faturamento de 2018 e o ano anterior foi positiva em todas as subcategorias?**
@@ -25,13 +25,13 @@ O painel desenvolvido foi estruturado para responder de forma clara e objetiva �
 
 ---
 
-## 🌐 Link Público do Dashboard
+##  Link Público do Dashboard
 
-🔗 [Acesse o dashboard publicado no Power BI Online](https://app.powerbi.com/view?r=eyJrIjoiNDY1ZTVkMTEtODU4ZC00NjlkLTg2MWUtMmQxZGRhNzdlYmFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
+ [Acesse o dashboard publicado no Power BI Online](https://app.powerbi.com/view?r=eyJrIjoiNDY1ZTVkMTEtODU4ZC00NjlkLTg2MWUtMmQxZGRhNzdlYmFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
 
 ---
 
-## 🖼️ Ilustrações do Painel
+##  Ilustrações do Painel
 
 ### Preview 1
 ![Screenshot do Dashboard - Visão Geral](https://github.com/user-attachments/assets/700f4273-4ff0-4183-8b6c-0b1d4eeab054
@@ -44,7 +44,7 @@ O painel desenvolvido foi estruturado para responder de forma clara e objetiva �
 
 ---
 
-## 🧠 Solução Técnica: Evitando Duplicações com TREATAS
+##  Solução Técnica: Evitando Duplicações com TREATAS
 
 Durante o desenvolvimento, foi identificado que as metas estavam sendo duplicadas ao aplicar filtros por Ano. Isso ocorreu pela ausência de relacionamento direto entre a tabela de calendário (`dCalendario`) e a tabela de metas consolidadas (`fMetasConsolidadas`).
 
