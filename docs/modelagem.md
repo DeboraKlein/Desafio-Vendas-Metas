@@ -1,4 +1,4 @@
-## 🎯 Estrutura de Modelagem
+##  Estrutura de Modelagem
 
 O projeto adota uma modelagem em estrela, com a tabela fato `fVendas` centralizando as transações, conectada a cinco tabelas de dimensão:
 
@@ -12,12 +12,12 @@ As medidas analíticas estão agrupadas na tabela `Medidas`, mantendo o modelo o
 
 A tabela `fMetasConsolidadas` apresenta metas de faturamento por ano, categoria e continente. Devido à sua granularidade, **não foi possível criar relacionamentos físicos diretos**, então sua integração foi feita por meio de **DAX com `TREATAS`**, garantindo análise precisa sem duplicações.
 
-> 📌 Layout visual: dimensões no topo, fato na base — padrão adotado para clareza de filtragem e leitura técnica.
+>  Layout visual: dimensões no topo, fato na base — padrão adotado para clareza de filtragem e leitura técnica.
 
 
 ---
 
-## ✅ Validação da Modelagem
+## Validação da Modelagem
 
 - Conferência via Diagrama de Relacionamentos.
 - Testes com medidas de desempenho para garantir integridade.
