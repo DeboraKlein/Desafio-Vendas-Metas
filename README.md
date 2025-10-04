@@ -1,4 +1,4 @@
-##  Análises Macro
+#  Análises Macro - Case Directy
 
 O painel desenvolvido foi estruturado para responder de forma clara e objetiva às questões abaixo, permitindo navegação fluida e extração de insights por meio de filtros dinâmicos.
 
