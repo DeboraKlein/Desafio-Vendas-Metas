@@ -8,7 +8,7 @@ A solução foi construída com base em dados desestruturados, tratados e modela
 O painel final permite segmentações temporais, comparações entre períodos, análise hierárquica por produto e região, e visualizações narrativas que respondem diretamente às perguntas do case. A documentação a seguir detalha cada etapa do projeto segundo o framework CRISP-DM, incluindo tratamento de dados, modelagem, medidas, validação e respostas às questões propostas.
 
 ### 1. Entendimento do Negócio
-O objetivo central era avaliar a performance comercial da Directy em relação às metas estabelecidas, com foco em:
+#### O objetivo central era avaliar a performance comercial da Directy em relação às metas estabelecidas, com foco em:
 
 Faturamento por período, categoria e subcategoria
 
@@ -21,7 +21,7 @@ Detecção de quedas e crescimentos críticos por produto
 As perguntas foram fornecidas como parte do escopo do case e serviram de guia para a construção do painel.
 
 ### 2. Entendimento dos Dados
-As fontes de dados incluíram arquivos CSV e planilhas com estrutura heterogênea. Os principais arquivos tratados foram:
+#### As fontes de dados incluíram arquivos CSV e planilhas com estrutura heterogênea. Os principais arquivos tratados foram:
 
 Produto.csv: dados mistos com marca, produto e subcategoria em formato textual
 
@@ -36,7 +36,7 @@ fMetasConsolidadas: metas por ano e continente, originalmente em layout de matri
 Vendas.csv: base transacional com colunas genéricas e registros inválidos
 
 ### 3. Preparação dos Dados
-As transformações foram realizadas no Power Query, com foco em padronização, integridade referencial e automação. As principais etapas incluíram:
+#### As transformações foram realizadas no Power Query, com foco em padronização, integridade referencial e automação. As principais etapas incluíram:
 
 Remoção de linhas em branco e registros inválidos
 
@@ -53,7 +53,7 @@ Unificação de arquivos por ano via Append Queries
 Despivotamento seletivo para transformar colunas em linhas
 
 ### 4. Modelagem
-Foi adotada uma estrutura em estrela, com a tabela fato fVendas centralizando as transações e conectada às seguintes dimensões:
+#### Foi adotada uma estrutura em estrela, com a tabela fato fVendas centralizando as transações e conectada às seguintes dimensões:
 
 dCalendario: segmentações temporais
 
@@ -68,7 +68,7 @@ dSubcategoria: agrupamento comercial
 As medidas analíticas foram organizadas na tabela Medidas. A tabela fMetasConsolidadas foi integrada via DAX com uso da função TREATAS, permitindo alinhamento temporal sem duplicações.
 
 ### 5. Modelagem Analítica – Medidas DAX
-As principais medidas desenvolvidas incluem:
+#### As principais medidas desenvolvidas incluem:
 
 Faturamento Total: soma direta da coluna Faturamento
 
@@ -89,7 +89,7 @@ Variação % Categoria 2018vs2017: variação percentual entre anos
 Continente Maior Queda Desktops: continente com maior queda absoluta em Desktops
 
 ### 6. Avaliação – Respostas às Perguntas do Case
-Exploratório
+#### Exploratório
 Faturamento total do período: R$ 1.245.000,00
 
 Meta de faturamento: R$ 1.300.000,00
@@ -122,7 +122,8 @@ Top 3 subcategorias em 2018: Celulares, Acessórios, Impressoras
 As mesmas subcategorias lideram em todos os períodos? Parcialmente. Desktops lideraram em 2017, mas perderam posição em 2018.
 
 ### 7. Implantação
-O painel foi publicado no Power BI Online com acesso público. A estrutura permite atualização automatizada via Power Query. Componentes interativos incluem:
+O painel foi publicado no Power BI Online com acesso público. A estrutura permite atualização automatizada via Power Query. 
+#### Componentes interativos incluem:
 
 Slicers por ano, categoria e localização
 
