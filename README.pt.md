@@ -1,7 +1,7 @@
 # Desafio Meta Vendas/ Case Directy
 
 ## Introdução
-Este projeto foi desenvolvido como parte do desafio analítico “Vendas x Metas”, com o objetivo de estruturar um painel interativo em Power BI capaz de responder a perguntas estratégicas sobre o desempenho comercial da empresa Directy. A análise cobre os anos de 2017 e 2018, com foco em metas de faturamento, variações por categoria e subcategoria, e distribuição geográfica das vendas.
+Este projeto foi desenvolvido como parte do desafio analítico “Vendas x Metas”, com o objetivo de estruturar um painel interativo em Power BI capaz de responder a perguntas estratégicas sobre o desempenho comercial de uma empresa de comércio varejista - Case Directy. A análise cobre os anos de 2017 e 2018, com foco em metas de faturamento, variações por categoria e subcategoria, e distribuição geográfica das vendas.
 
 A solução foi construída com base em dados desestruturados, tratados e modelados no Power Query, e organizados em uma estrutura dimensional em estrela. As medidas analíticas foram desenvolvidas em DAX, com destaque para o uso da função TREATAS para integração de metas sem relacionamento físico direto.
 
