@@ -123,6 +123,26 @@ As mesmas subcategorias lideram em todos os períodos? Parcialmente. Desktops li
 
 ### 7. Implantação
 O painel foi publicado no Power BI Online com acesso público. A estrutura permite atualização automatizada via Power Query. 
+---
+
+##  Link Público do Dashboard
+
+ [Acesse o dashboard publicado no Power BI Online](https://app.powerbi.com/view?r=eyJrIjoiNDY1ZTVkMTEtODU4ZC00NjlkLTg2MWUtMmQxZGRhNzdlYmFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
+
+---
+
+##  Ilustrações do Painel
+
+### Preview 1
+![Screenshot do Dashboard - Visão Geral](https://github.com/user-attachments/assets/700f4273-4ff0-4183-8b6c-0b1d4eeab054
+)
+
+
+### Preview 2
+![Screenshot do Dashboard - Análise Comparativa](https://github.com/user-attachments/assets/1608bd87-b6d3-4e16-bde0-a5a541f254d1
+)
+
+---
 #### Componentes interativos incluem:
 
 Slicers por ano, categoria e localização
