@@ -4,7 +4,7 @@ Este documento detalha as etapas de tratamento e limpeza aplicadas às bases do 
 
 ---
 
-## 📦 Produto.csv
+## Produto.csv
 
 ### Problemas detectados:
 - Linhas com apenas `Marca: Nome` sem estrutura tabular.
@@ -24,14 +24,14 @@ Este documento detalha as etapas de tratamento e limpeza aplicadas às bases do 
 
 ---
 
-## 🌍 Arquivo Localização.csv → Tabela `dLocalização`
+##  Arquivo Localização.csv → Tabela `dLocalização`
 
-### 🐞 Problemas detectados
+###  Problemas detectados
 - Colunas com nomes genéricos ou inconsistentes
 - Presença de valores nulos ou duplicados
 - Dados combinados em uma única coluna (ex: “UF - Cidade”)
 
-### 🔄 Transformações aplicadas no Power Query
+###  Transformações aplicadas no Power Query
 1. **Renomear colunas**  
    Padronização dos títulos para `idLocalizacao`, `UF`, `Cidade`, `Regiao`, etc.
 
@@ -53,14 +53,14 @@ Este documento detalha as etapas de tratamento e limpeza aplicadas às bases do 
 > 🔗 **Relacionamento na modelagem**: Conectado à tabela `fVendas` via `idLocalizacao`
 
 
-## 🗂️ Arquivo Subcategoria.csv → Tabela `dSubcategoria`
+##  Arquivo Subcategoria.csv → Tabela `dSubcategoria`
 
-### 🐞 Problemas detectados
+###  Problemas detectados
 - Arquivo em formato simples (CSV plano), com colunas não nomeadas inicialmente
 - Dados contidos em uma coluna expandida a partir de outra estrutura
 - Tipos de dados não estavam definidos corretamente
 
-### 🔄 Transformações aplicadas no Power Query
+###  Transformações aplicadas no Power Query
 1. **Conversão para tabela**  
    Foi utilizado o comando `Table.FromList` ou equivalente para transformar a estrutura inicial em formato tabular.
 
@@ -70,19 +70,19 @@ Este documento detalha as etapas de tratamento e limpeza aplicadas às bases do 
 3. **Conversão de tipos**  
    Aplicado `Table.TransformColumnTypes` para garantir que os três campos estejam como `type text` — conforme visto no código da barra de fórmula.
 
-> 🔗 **Relacionamento na modelagem**: Conectado à tabela `dProduto` via `idSubcategoria`
+>  **Relacionamento na modelagem**: Conectado à tabela `dProduto` via `idSubcategoria`
 > 
 ---
 
-## 📊 fMetasConsolidadas — Metas globais por categoria e ano
+##  fMetasConsolidadas — Metas globais por categoria e ano
 
-### 🐞 Problemas detectados
+###  Problemas detectados
 - Dados vieram de múltiplas consultas (2018, 2019…) e precisaram ser unificados
 - Estrutura original com layout em matriz, não ideal para modelagem
 - Presença de valores nulos ou repetidos
 - Nomes de categorias inconsistentes (ex: “Total” agrupando outras linhas)
 
-### 🔄 Transformações aplicadas no Power Query
+###  Transformações aplicadas no Power Query
 1. **Importação e navegação da fonte**  
    Carregadas as planilhas originais contendo metas por ano/região.
 
@@ -110,20 +110,20 @@ Este documento detalha as etapas de tratamento e limpeza aplicadas às bases do 
 9. **Conversão de tipos**  
    Ajustado para garantir que os dados monetários e temporais estejam corretos.
 
-> 🔗 **Relacionamento na modelagem**: Usado para análises comparativas e metas por região/categoria, cruzando com `dProduto`, `dLocalizacao` e `fVendas`.
+>  **Relacionamento na modelagem**: Usado para análises comparativas e metas por região/categoria, cruzando com `dProduto`, `dLocalizacao` e `fVendas`.
 
 
 ---
 
-## 🧑‍💼 Arquivo Clientes.csv → Tabela `dCliente`
+##  Arquivo Clientes.csv → Tabela `dCliente`
 
-### 🐞 Problemas detectados
+###  Problemas detectados
 - Existência de dois tipos de clientes: Pessoa Física e Empresa
 - Estrutura desigual entre os tipos, resultando em múltiplas colunas com valores `null` (ex: Nome Empresa para PF, Data Nascimento para PJ)
 - Formato da data de nascimento com erro de localidade
 - Variação nos padrões de texto para ocupação e educação
 
-### 🔄 Transformações aplicadas no Power Query
+###  Transformações aplicadas no Power Query
 1. **Promoção de cabeçalhos**  
    Reconhecimento automático dos nomes das colunas originais.
 
@@ -152,15 +152,15 @@ Este documento detalha as etapas de tratamento e limpeza aplicadas às bases do 
 
 ---
 
-## 💰 Arquivo Vendas.csv → Tabela `fVendas`
+##  Arquivo Vendas.csv → Tabela `fVendas`
 
-### 🐞 Problemas detectados
+###  Problemas detectados
 - Presença de linhas em branco ou inválidas
 - Colunas com nomenclaturas genéricas (ex: "Column1", "Column2")
 - Tipos de dados não estavam corretamente atribuídos
 - Possíveis valores ausentes ou mal estruturados em campos chave
 
-### 🔄 Transformações aplicadas no Power Query
+###  Transformações aplicadas no Power Query
 1. **Remoção de linhas em branco**  
    Utilizado `Removed Blank Rows` para eliminar registros sem informação.
 
@@ -173,10 +173,9 @@ Este documento detalha as etapas de tratamento e limpeza aplicadas às bases do 
 4. **Conversão de tipos**  
    Aplicado `Changed Type` para garantir que campos como datas (`Data Venda`, `Data Envio`) e IDs (`ID Produto`, `ID Cliente`, etc.) estejam com os tipos apropriados (date, text ou number).
 
-> 🔗
 
 ---
 
-📌 Todas as transformações foram realizadas no Power Query dentro do Power BI para garantir reusabilidade e automação. Essa abordagem permite que futuras atualizações sejam incorporadas com mínimo esforço manual.
+ Todas as transformações foram realizadas no Power Query dentro do Power BI para garantir reusabilidade e automação. Essa abordagem permite que futuras atualizações sejam incorporadas com mínimo esforço manual.
 
 
