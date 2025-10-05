@@ -90,15 +90,15 @@ Continente Maior Queda Desktops: continente com maior queda absoluta em Desktops
 
 ### 6. Avaliação – Respostas às Perguntas do Case
 #### Exploratório
-Faturamento total do período: R$ 1.245.000,00
+Faturamento total do período: R$ 171M
 
-Meta de faturamento: R$ 1.300.000,00
+Meta de faturamento: R$ 205,02M
 
-% de atendimento da meta: 95,8%
+% de atendimento da meta: 83,59%
 
-Categoria com maior faturamento: Tecnologia
+Categoria com maior faturamento: Computers
 
-Representatividade da categoria líder: 41,7%
+Representatividade da categoria líder: 74,33%
 
 Top 3 subcategorias por faturamento: Desktops, Celulares, Acessórios
 
