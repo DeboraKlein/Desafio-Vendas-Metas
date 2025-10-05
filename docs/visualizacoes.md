@@ -460,28 +460,65 @@ COALESCE previne retorno vazio
 
 História visual que revela **qual categoria teve a maior mudança percentual** no faturamento entre os anos de 2017 e 2018. Ideal para relatórios gerenciais ou dashboards executivos.
 
-###  Medida 1 — `Variação % Categoria 2018vs2017`
+###  Medida **Categoria com maior variação**
 ````
+Categoria com maior variação = 
+VAR TabelaVariacao = 
+    ADDCOLUMNS(
+        VALUES(dSubcategoria[Categoria]),
+        "Variação", [Variação % Categoria 2018vs2017]
+    )
+VAR CategoriaMaiorVariacao =
+    TOPN(1, TabelaVariacao, [Variação], DESC)
 
+RETURN
+    MAXX(CategoriaMaiorVariacao, dSubcategoria[Categoria])
 Variação % Categoria 2018vs2017 = 
 VAR Percentual2017 = 
     CALCULATE(
         [% Faturamento Categoria],
         dCalendario[Ano] = 2017
     )
-
-VAR Percentual2018 = 
-    CALCULATE(
-        [% Faturamento Categoria],
-        dCalendario[Ano] = 2018
+````
+### Medida **Valor Variação Categoria Maior Crescimento**
+````
+Valor Variação Categoria Maior Crescimento = 
+VAR TabelaVariacao = 
+    ADDCOLUMNS(
+        VALUES(dSubcategoria[Categoria]),
+        "Variação", [Variação % Categoria 2018vs2017],
+        "Valor2018", CALCULATE([Faturamento Total], dCalendario[Ano] = 2018),
+        "Valor2017", CALCULATE([Faturamento Total], dCalendario[Ano] = 2017)
     )
 
-RETURN
-    Percentual2018 - Percentual2017
-````
-Compara a participação percentual da categoria no faturamento total entre os dois anos
+VAR CategoriaMaiorVariacao =
+    TOPN(1, TabelaVariacao, [Variação], DESC)
 
-Baseada em uma medida prévia: [% Faturamento Categoria]
+RETURN
+    MAXX(
+        CategoriaMaiorVariacao,
+        [Valor2018] - [Valor2017]
+    )
+````
+
+
+### Medida **Valor % Variação Categoria Maior Crescimento**
+````
+Valor % Variação Categoria Maior Crescimento = 
+VAR TabelaVariacao = 
+    ADDCOLUMNS(
+        VALUES(dSubcategoria[Categoria]),
+        "Variação", [Variação % Categoria 2018vs2017]
+    )
+
+VAR CategoriaMaiorVariacao =
+    TOPN(1, TabelaVariacao, [Variação], DESC)
+
+RETURN
+    MAXX(CategoriaMaiorVariacao, [Variação])
+
+````
+Compara a participação percentual e o valor monetário da categoria no faturamento total entre 2017 e 2018.
 
 Retorna variação positiva ou negativa
 
