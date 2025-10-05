@@ -111,6 +111,7 @@ Indicador fundamental que expressa o quanto do objetivo foi cumprido em relaçã
 
 
 ###  `% Atingimento da Meta`
+---
 ```
 % Atingimento da Meta = 
 [Faturamento Total] / [Meta Total por Ano]
@@ -150,6 +151,7 @@ Indicador visual para avaliar a representatividade de cada subcategoria no total
 
 
 ###  `% Faturamento SubCategoria`
+---
 ```
 % Faturamento SubCategoria = 
 DIVIDE(
@@ -186,6 +188,7 @@ Esse visual revela qual categoria lidera o faturamento e quantifica sua represen
 
 
 ###  `Categoria Campeã`
+---
 ```
 Categoria Campeã = 
 CALCULATE(
@@ -254,6 +257,7 @@ Ideal para cartão com visual narrativo, estilo Enlighten: “A categoria com ma
 Visual analítico que mostra a representatividade de cada categoria no total de faturamento. Ideal para destacar “quem leva qual fatia do bolo”!
 
 ###  `% Faturamento Categoria`
+---
 ```
 % Faturamento Categoria = 
 DIVIDE(
@@ -289,6 +293,7 @@ Ideal para visualização em gráfico de rosca (ou pizza), destacando cada categ
 Visual interativo que cruza a dimensão geográfica (continente) com a dimensão comercial (subcategoria), revelando padrões de faturamento por região e categoria de produto.
 
 ###  `Faturamento Total`
+---
 ```
 Faturamento Total = 
 SUM(fVendas[Faturamento])
@@ -324,6 +329,7 @@ O tooltip fornece um aprofundamento analítico diretamente sobre a matriz princi
 ---
 
 ####  `Qtd Vendida`
+---
 
 ```
 Qtd Vendida = 
@@ -331,6 +337,7 @@ SUM(fVendas[Quantidade])
 Reflete o volume total de unidades vendidas para o contexto selecionado
 ````
 #### 'Ticket Médio'
+---
 ````
 Ticket Médio = 
 DIVIDE(
@@ -425,6 +432,7 @@ ALL remove o filtro da subcategoria no denominador, garantindo cálculo proporci
 Visual interativo que permite explorar o faturamento de forma hierárquica, partindo de categoria até subcategoria.
 
 ###  Medida Base: `Faturamento Total`
+---
 ```
 Faturamento Total = 
 SUM(fVendas[Faturamento])
@@ -686,7 +694,7 @@ Componentes de interatividade que facilitam a exploração do relatório por ano
 - Campo: `dSubcategoria[Categoria]`
 - Tipo: ***Dropdown** 
 - Valores fixos: Audio, Computers, TV and Video
----
+
 
 ####  Botões de Navegação
 ---
