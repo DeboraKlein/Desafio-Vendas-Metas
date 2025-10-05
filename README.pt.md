@@ -23,34 +23,37 @@ O painel final permite segmentações temporais, comparações entre períodos, 
 ### 2. Entendimento dos Dados
 #### As fontes de dados incluíram arquivos CSV e planilhas com estrutura heterogênea. Os principais arquivos tratados foram:
 
-- ``Produto.csv``: dados mistos com marca, produto e subcategoria em formato textual
+- ``Produto.csv``: continha dados textuais mistos com cabeçalhos de marca, descrições de produtos e referências de subcategoria combinadas em uma única coluna. Exigiu parsing de identificadores e normalização dos nomes dos produtos.
 
-- ``Localizacao.csv``: campos combinados e duplicados
+- ``Localizacao.csv``: incluía dados geográficos hierárquicos (continente, país, estado/província e cidade) com formatação inconsistente, valores nulos e rótulos prefixados. Demandou reconstrução da hierarquia de localização e deduplicação
 
-- ``Subcategoria.csv``: estrutura plana, convertida em tabela relacional
+- ``Subcategoria.json``: estruturado como objetos aninhados, exigiu conversão para tabela relacional e reconciliação com os dados de produto.
 
-- ``Clientes.csv``: dados de PF e PJ com colunas assimétricas
+- ``Clientes.xlsx``:apresentava colunas assimétricas para clientes pessoa física e jurídica, exigindo harmonização de esquema.
 
-- ``fMetasConsolidadas``: metas por ano e continente, originalmente em layout de matriz
+- ``Metas.xlsx``: apresentava metas por ano e continente em layout matricial, sem chaves relacionais, exigindo transformação para análise temporal.
 
-- ``Vendas.csv``: base transacional com colunas genéricas e registros inválidos
+- ``Vendas.xlsx``: base transacional com nomes genéricos de colunas e registros inválidos, exigindo validação e enriquecimento.
 
 ### 3. Preparação dos Dados
 #### As transformações foram realizadas no Power Query, com foco em padronização, integridade referencial e automação. As principais etapas incluíram:
 
-- Remoção de linhas em branco e registros inválidos
+- Remoção de linhas de controle, linhas em branco e registros inválidos em todas as fontes.
 
-- Separação de campos combinados por delimitadores
+- Separação de campos combinados por delimitadores nos arquivos de produto e localização para extrair atributos estruturados.
 
-- Conversão de tipos com localidade (ex: datas brasileiras)
-
+- Conversão de tipos com reconhecimento de localidade, especialmente para formatos de data e moeda.
 - Criação de colunas derivadas para segmentações (ex: região, tipo de cliente)
 
-- Padronização de nomenclaturas e estrutura tabular
+- Criação de colunas derivadas para segmentações (ex: região, tipo de cliente, hierarquia de produto).
 
-- Unificação de arquivos por ano via Append Queries
+- Normalização de nomenclaturas, incluindo remoção de prefixos e ajustes de capitalização.
 
-- Despivotamento seletivo para transformar colunas em linhas
+- Unificação de arquivos anuais por meio de Append Queries para permitir análise temporal consistente.
+
+- Despivotamento seletivo de metas em formato matricial para viabilizar comparações ano a ano.
+
+- Integração de dados sem relacionamento físico (ex: metas) utilizando funções DAX como TREATAS, simulando relacionamentos sem junções físicas.
 
 ### 4. Modelagem
 #### Foi adotada uma estrutura em estrela, com a tabela fato fVendas centralizando as transações e conectada às seguintes dimensões:
