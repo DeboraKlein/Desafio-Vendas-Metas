@@ -63,7 +63,17 @@ A star-schema structure was adopted, with the fact table `fVendas` centralizing 
 - `dCliente`: demographic profile
 - `dSubcategoria`: commercial grouping
 
-Analytical measures were organized in the **Measures** table. The `fMetasConsolidadas` table was integrated via DAX using `TREATAS`.
+In addition to the main dimensions, a supporting table named fMetasConsolidadas was created to consolidate revenue targets from 2017, 2018, and 2019. This table was manually structured from matrix-formatted spreadsheets and transformed into a normalized tabular format with the following columns:
+
+- Year
+
+- Continent
+
+- Category
+
+- Revenue Target
+
+Since there is no physical relationship between fMetasConsolidadas and the other tables in the model, its integration was performed using DAX with the TREATAS function. This approach enabled temporal and geographic alignment of targets with actual sales data, without duplications or cardinality conflicts.
 
 ---
 
