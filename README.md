@@ -25,28 +25,31 @@ The questions provided in the case served as a guide for building the dashboard.
 
 ## 2. Data Understanding
 
-Data sources included CSV files and spreadsheets with heterogeneous structures. Key files processed:
+The dataset was composed of heterogeneous sources, including CSV files, spreadsheets, and JSON structures. Each file presented distinct formatting and semantic challenges:
 
-- `Produto.csv`: mixed data with brand, product, and subcategory in textual format
-- `Localizacao.csv`: combined and duplicated fields
-- `Subcategoria.csv`: flat structure, converted into a relational table
-- `Clientes.csv`: individual and corporate client data with asymmetric columns
-- `fMetasConsolidadas`: targets by year and continent, originally in matrix layout
-- `Vendas.csv`: transactional base with generic columns and invalid records
+- `Produto.csv`: contained mixed textual data with brand headers, product descriptions, and subcategory references embedded in a single column. Required parsing of identifiers and normalization of product names.
+- `Localizacao.csv`: included hierarchical geographic data (continent, country, state/province, city) with inconsistent formatting, null values, and prefixed labels. Demanded reconstruction of location hierarchy and deduplication.
+- `Subcategoria.csv`: structured as nested objects, requiring conversion to a relational table and reconciliation with product-level data.
+- `Clientes.csv`: featured asymmetric columns for individual and corporate clients, requiring schema harmonization.
+- `fMetasConsolidadas`: presented targets by year and continent in matrix layout, lacking relational keys and requiring transformation for time-series analysis.
+- `Vendas.csv`: transactional dataset with generic column names and invalid records, necessitating validation and enrichment.
 
 ---
 
 ## 3. Data Preparation
 
-Transformations were performed in Power Query, focusing on standardization, referential integrity, and automation:
+Transformations were executed in Power Query, with emphasis on standardization, referential integrity, and automation. Key procedures included:
 
-- Removal of blank rows and invalid records
-- Separation of combined fields using delimiters
-- Type conversion with locale settings (e.g., Brazilian dates)
-- Creation of derived columns for segmentation (e.g., region, client type)
-- Standardization of naming conventions and tabular structure
-- File unification by year using Append Queries
-- Selective unpivoting to convert columns into rows
+- Removal of control rows, blank lines, and invalid entries across all sources.
+- Delimiter-based field separation in product and location files to extract structured attributes.
+- Type conversion with locale awareness, especially for date and currency formats.
+- Creation of derived columns for segmentation (e.g., region, client type, product hierarchy).
+- Normalization of naming conventions, including removal of prefixes and casing adjustments.
+- Unification of annual datasets using Append Queries for consistent temporal analysis.
+- Selective unpivoting of matrix-formatted targets to enable year-over-year comparisons.
+- Integration of non-relational data (e.g., metas) using DAX functions such as TREATAS, simulating relationships without physical joins.
+
+These steps ensured a clean, scalable, and semantically rich data model suitable for analytical exploration and dashboard development.
 
 ---
 
