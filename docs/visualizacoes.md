@@ -458,7 +458,9 @@ COALESCE previne retorno vazio
 ##  Enlighten Story — Categoria com Maior Variação de Faturamento
 ---
 
-História visual que revela **qual categoria teve a maior mudança percentual** no faturamento entre os anos de 2017 e 2018. Ideal para relatórios gerenciais ou dashboards executivos.
+História visual que revela **qual categoria teve a maior mudança percentual e em valor monetário** no faturamento entre os anos de 2017 e 2018. Ideal para relatórios gerenciais ou dashboards executivos.
+
+### Texto " A categoria # realizou # em vendas o que representa um aumento de # em relação ao ano anterior."
 
 ###  Medida **Categoria com maior variação**
 ````
@@ -586,88 +588,6 @@ Retorna o nome do continente
 
 "Entre 2017 e 2018, vendas de Desktops recuaram #Variação Representatividade Desktops, influenciadas principalmente pelo continente #Continente Maior Queda Desktops."
 
-##  Controles de Navegação e Filtro Temporal
----
-
-Componentes de interatividade que facilitam a exploração do relatório por ano e seção, mantendo a experiência fluida e intuitiva.
-
-
-###  Slicer de Ano
-
-- Campo: `dCalendario[Ano]`
-- Tipo: **Lista horizontal** ou **botões** (recomendo botões!)
-- Valores fixos: 2017, 2018, 2019
-- Recomendações:
-  - Desabilite seleção múltipla, se a análise for ano a ano
-  - Ative "Seleção única obrigatória" para evitar dados agregados indevidos
-  - Coloque o slicer no topo do relatório para contexto claro
-
----
-
-##  Controles de Navegação e Filtro Temporal
----
-
-Componentes de interatividade que facilitam a exploração do relatório por ano e seção, mantendo a experiência fluida e intuitiva.
-
-###  Slicer de Ano
-
-- Campo: `dCalendario[Ano]`
-- Tipo: **Lista horizontal** ou **botões** (recomendo botões!)
-- Valores fixos: 2017, 2018, 2019
-- Recomendações:
-  - Desabilite seleção múltipla, se a análise for ano a ano
-  - Ative "Seleção única obrigatória" para evitar dados agregados indevidos
-  - Coloque o slicer no topo do relatório para contexto claro
-
----
-
-###  Botões de Navegação
-
-- Objetivo: Alternar entre páginas de forma elegante e guiada
-- Componentes:
-  - Botão “ Visão Geral”
-  - Botão “ Análises por Categoria”
-  - Botão “ Análises Geográficas”
-  - Botão “ Histórias” (Enlighten Story)
-- Configuração:
-  - Botão padrão: forma retangular com ícone + texto
-  - Ação: **Navegar para página específica**
-  - Feedback visual: cor ou borda ao passar o mouse
-  - Posicionamento: área superior ou rodapé fixo
-
-- **Gráficos**:
-  - Barras por Categoria e Subcategoria
-  - Mapa por Localização
-  - Série Temporal (linha) de vendas por mês
-
-- **Segmentações**:
-  - Filtros por ano, produto, localização e cliente
-
-> Objetivo: Proporcionar uma visão macro da performance com possibilidade de drill-down.
-
-##  Painel: Desempenho por Localização
----
-
-- Mapa temático com intensidade de vendas por região
-- Tabela com ranking de cidades/estados por volume e metas
-- Indicador de conversão por região (% de meta atingida)
-
-
-##  Painel: Perfil de Clientes
----
-
-- Gráfico de pirâmide etária (se houver dados de idade)
-- Distribuição por gênero
-- Segmentação por localização e volume de compras
-
-
-##  Painel: Insights e Tendências
----
-
-- Gráfico de dispersão: Ticket Médio × Volume de Vendas
-- Série temporal de metas x vendas
-- Gráfico de Pareto para identificar produtos mais rentáveis
-
 
 ##  Design e UX
 ---
@@ -678,5 +598,58 @@ Componentes de interatividade que facilitam a exploração do relatório por ano
 
 
  As visualizações foram pensadas para contar a história dos dados de forma clara, interativa e estratégica. Cada painel responde a uma pergunta de negócio e facilita a tomada de decisões.
+
+###  Controles de Navegação e Filtro Temporal
+---
+
+Componentes de interatividade que facilitam a exploração do relatório por ano e seção, mantendo a experiência fluida e intuitiva.
+
+
+####  Slicer de Ano
+
+- Campo: `dCalendario[Ano]`
+- Tipo: ***Dropdown** 
+- Valores fixos: 2017, 2018, 2019
+
+####  Slicer de Continente
+
+- Campo: `dLocalizacao[Continente]`
+- Tipo: ***Dropdown** 
+- Valores fixos: Asia, Europe, North America
+
+
+####  Slicer de Categoria
+
+- Campo: `dSubcategoria[Categoria]`
+- Tipo: ***Dropdown** 
+- Valores fixos: Audio, Computers, TV and Video
+---
+
+####  Botões de Navegação
+
+- Objetivo: Alternar entre páginas de forma elegante e guiada
+- Componentes:
+  - Botão " Ir para o Dashboard" > Acessa o Dashboard a partir da capa levando para a " Visão Geral"
+  - Botão “ Seta para a direita” > Leva para a página " Panorama de Vendas"
+  - Botão “ Seta para a esquerda” > Retorna para a " Visão Geral"
+  - Botão “ Home” > Retorna para a " Capa" do Dashboard
+  
+- Configuração:
+  - Botão “ Home”: Ícone de Casa + Botão em Branco 
+  - Botão padrão: forma própria com ícone
+  - Ação: **Navegar para página específica**
+  - Posicionamento: área superior a esquerda
+ 
+  ####  Botão de Informação
+  - Objetivo: Oeientar ao usuário sobre o detalhameneto de informações com o tooltip
+  - Componente:
+    - Botão " i" > abre uma visualização explicativa 
+    - Botão " Reset" > Retorna à navegação da página " Visão Geral"
+   
+ - Configuração:
+   - Botão padrão " i" e "Reset" nativos do Power BI
+   - Ação: **Navegar entre  Bookmarkers**
+   - Posisionamento: No canto inferior direito do gráfico de rosca  e vinculado ao gráfico de rosca e a tabela na página " Visão Geral"
+
 ````
 
