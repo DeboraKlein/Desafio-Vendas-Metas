@@ -68,7 +68,19 @@ O painel final permite segmentações temporais, comparações entre períodos, 
 
 - ``dSubcategoria``: agrupamento comercial
 
-As medidas analíticas foram organizadas na tabela Medidas. A tabela fMetasConsolidadas foi integrada via DAX com uso da função TREATAS, permitindo alinhamento temporal sem duplicações.
+
+Além das dimensões principais, foi criada a tabela auxiliar fMetasConsolidadas, responsável por consolidar os dados de metas de faturamento dos anos de 2017, 2018 e 2019. Essa tabela foi estruturada manualmente a partir de planilhas em formato matricial, convertida em formato tabular com colunas normalizadas para:
+
+- Ano
+
+- Continente
+
+- Categoria
+
+- Meta de Faturamento
+
+Como não há relacionamento físico entre fMetasConsolidadas e as demais tabelas do modelo, sua integração foi realizada via DAX utilizando a função TREATAS, permitindo o alinhamento temporal e geográfico das metas com os dados reais de vendas sem duplicações ou conflitos de cardinalidade.
+
 
 ### 5. Modelagem Analítica – Medidas DAX
 #### As principais medidas desenvolvidas incluem:
