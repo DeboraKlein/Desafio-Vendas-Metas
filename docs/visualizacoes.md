@@ -30,19 +30,22 @@ Filtra categorias para excluir o agregado "Total"
 Representa o somatório de metas consolidadas por ano
 ````
 
-% Variação Meta YoY = 
-VAR HasYearSelected = NOT(ISFILTERED(dCalendario[Ano]))
-VAR MetaAtual = [Meta Total por Ano]
-VAR MetaAnterior = [Meta LY]
+% Variação Meta YoY Robusta = 
+DIVIDE(
+    [Meta Total por Ano] - [Meta LY Robusta],
+    [Meta LY Robusta],
+    0
+)
+````
+Para utilizá-la precisa-se da medida abaixo
+````
+Meta LY Robusta = 
+VAR AnoAtual = SELECTEDVALUE(dCalendario[Ano])
 RETURN
-IF(
-    HasYearSelected || ISBLANK(MetaAtual) || ISBLANK(MetaAnterior),
-    0,
-    DIVIDE(
-        MetaAtual - MetaAnterior,
-        MetaAnterior,
-        0
-    )
+CALCULATE(
+    SUM('fMetasConsolidadas'[Value]),
+    'fMetasConsolidadas'[Categoria] <> "Total",
+    'fMetasConsolidadas'[Ano] = AnoAtual - 1
 )
 ````
 Verifica se há filtro de ano ativo
