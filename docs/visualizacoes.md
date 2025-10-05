@@ -530,32 +530,55 @@ Retorna variação positiva ou negativa
 
 Narrativa visual que destaca o mercado mais afetado pela queda de faturamento de desktops, com base na análise ano a ano e impacto na representatividade global.
 
-###  Medida 1 — `Variação Representatividade Desktops`
+###  Medida Subcategoria Maior Queda
 
 ```
+Subcategoria Maior Queda = 
+CALCULATE(
+    MAX(dSubcategoria[Subcategoria]),
+    TOPN(
+        1,
+        ADDCOLUMNS(
+            VALUES(dSubcategoria[Subcategoria]),
+            "Queda",
+            CALCULATE(
+                [Faturamento Total],
+                dCalendario[Ano] = 2018
+            ) - CALCULATE(
+                [Faturamento Total],
+                dCalendario[Ano] = 2017
+            )
+        ),
+        [Queda],
+        ASC
+    )
+)
+````
+### Medida Variação Representatividade Desktops
+````
 Variação Representatividade Desktops = 
 VAR Rep2018 = 
-    CALCULATE(
-        [% Representatividade Desktops],
-        dCalendario[Ano] = 2018
-    )
+CALCULATE(
+    [% Representatividade Desktops],
+    dCalendario[Ano] = 2018
+)
 
 VAR Rep2017 = 
-    CALCULATE(
-        [% Representatividade Desktops],
-        dCalendario[Ano] = 2017
-    )
+CALCULATE(
+    [% Representatividade Desktops],
+    dCalendario[Ano] = 2017
+)
 
 RETURN
 DIVIDE(Rep2018 - Rep2017, Rep2017)
-````
 Mede a mudança percentual na participação dos Desktops dentro do faturamento total
 
 Usa uma medida pré-existente: % Representatividade Desktops
 
 Valor negativo indica perda de relevância
 ````
-
+### Medida Continente Maior Queda Desktops
+````
 Continente Maior Queda Desktops = 
 CALCULATE(
     MAX(dLocalizacao[Continente]),
@@ -583,10 +606,31 @@ Usa TOPN com ordenação crescente para capturar a maior queda
 
 Retorna o nome do continente
 
+
+### Medida Variação % Representatividade Desktops
+
+````
+Variação % Representatividade Desktops = 
+VAR Rep2017 = 
+    CALCULATE(
+        [% Representatividade Desktops],
+        dCalendario[Ano] = 2017
+    )
+
+VAR Rep2018 = 
+    CALCULATE(
+        [% Representatividade Desktops],
+        dCalendario[Ano] = 2018
+    )
+
+RETURN
+    Rep2018 - Rep2017
+````
+
 ##  Frase Narrativa para o Enlighten Story
 ---
 
-"Entre 2017 e 2018, vendas de Desktops recuaram #Variação Representatividade Desktops, influenciadas principalmente pelo continente #Continente Maior Queda Desktops."
+"As vendas da subcategoria # recuaram #, influenciadas pelo continente #. Fato que diminuiu sua representatividade perante o total faturado em # em relação  a 2017."
 
 
 ##  Design e UX
@@ -640,7 +684,7 @@ Componentes de interatividade que facilitam a exploração do relatório por ano
   - Ação: **Navegar para página específica**
   - Posicionamento: área superior a esquerda
  
-  ####  Botão de Informação
+####  Botão de Informação
   - Objetivo: Oeientar ao usuário sobre o detalhameneto de informações com o tooltip
   - Componente:
     - Botão " i" > abre uma visualização explicativa 
