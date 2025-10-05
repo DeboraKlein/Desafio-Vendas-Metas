@@ -67,7 +67,6 @@ Visual analítico composto por duas medidas principais: faturamento acumulado e 
 
 
 ###  `Faturamento Total`
-
 ```
 Faturamento Total = 
 SUM(fVendas[Faturamento])
@@ -112,7 +111,6 @@ Indicador fundamental que expressa o quanto do objetivo foi cumprido em relaçã
 
 
 ###  `% Atingimento da Meta`
-
 ```
 % Atingimento da Meta = 
 [Faturamento Total] / [Meta Total por Ano]
@@ -126,13 +124,13 @@ Pode ser combinado com formatação condicional ou barras de progresso 📈
 
 
 ###  Cartão de Lucro Total
+---
 
 Indicador básico que mostra o total de lucro gerado pelas vendas.
 
----
+
 
 ###  `Lucro Total`
-
 ```
 Lucro Total = 
 SUM(fVendas[LucroVenda])
@@ -152,7 +150,6 @@ Indicador visual para avaliar a representatividade de cada subcategoria no total
 
 
 ###  `% Faturamento SubCategoria`
-
 ```
 % Faturamento SubCategoria = 
 DIVIDE(
@@ -189,7 +186,6 @@ Esse visual revela qual categoria lidera o faturamento e quantifica sua represen
 
 
 ###  `Categoria Campeã`
-
 ```
 Categoria Campeã = 
 CALCULATE(
@@ -258,7 +254,6 @@ Ideal para cartão com visual narrativo, estilo Enlighten: “A categoria com ma
 Visual analítico que mostra a representatividade de cada categoria no total de faturamento. Ideal para destacar “quem leva qual fatia do bolo”!
 
 ###  `% Faturamento Categoria`
-
 ```
 % Faturamento Categoria = 
 DIVIDE(
@@ -294,7 +289,6 @@ Ideal para visualização em gráfico de rosca (ou pizza), destacando cada categ
 Visual interativo que cruza a dimensão geográfica (continente) com a dimensão comercial (subcategoria), revelando padrões de faturamento por região e categoria de produto.
 
 ###  `Faturamento Total`
-
 ```
 Faturamento Total = 
 SUM(fVendas[Faturamento])
@@ -313,6 +307,7 @@ Pode ter filtro de tempo aplicado (mês, ano, trimestre)
 O tooltip fornece um aprofundamento analítico diretamente sobre a matriz principal `Continente x Subcategoria`, revelando volume, valor médio e variação anual de faturamento.
 
 ###  Contexto do Visual
+---
 
 **Matriz Principal:**
 - Linhas: `Continente`  
@@ -326,6 +321,7 @@ O tooltip fornece um aprofundamento analítico diretamente sobre a matriz princi
 ---
 
 ###  Cartões no Tooltip
+---
 
 ####  `Qtd Vendida`
 
@@ -333,7 +329,9 @@ O tooltip fornece um aprofundamento analítico diretamente sobre a matriz princi
 Qtd Vendida = 
 SUM(fVendas[Quantidade])
 Reflete o volume total de unidades vendidas para o contexto selecionado
-
+````
+#### 'Ticket Médio'
+````
 Ticket Médio = 
 DIVIDE(
     SUMX(
@@ -348,6 +346,7 @@ DIVIDE(
 Mostra o valor médio por transação, útil para insights sobre precificação e margem
 
 ###  Matriz YoY no Tooltip
+---
 
 % Cresc YoY por Subcategoria
 ````
@@ -380,6 +379,7 @@ Permite identificar crescimento ou retração diretamente no contexto do tooltip
 Visual em formato de **scroller horizontal** ou **gráfico de lista vertical** que permite navegação fluida entre subcategorias, exibindo tanto o valor total quanto a representatividade percentual de cada uma.
 
 ###  `Faturamento Total`
+---
 
 ```
 Faturamento Total = 
@@ -390,6 +390,7 @@ Soma direta da coluna Faturamento da tabela de fatos
 Exibe o valor bruto gerado por subcategoria
 
 ###  % Faturamento SubCategoria
+---
 ````
 
 % Faturamento SubCategoria = 
@@ -424,7 +425,6 @@ ALL remove o filtro da subcategoria no denominador, garantindo cálculo proporci
 Visual interativo que permite explorar o faturamento de forma hierárquica, partindo de categoria até subcategoria.
 
 ###  Medida Base: `Faturamento Total`
-
 ```
 Faturamento Total = 
 SUM(fVendas[Faturamento])
@@ -442,10 +442,20 @@ Visual que mostra a **evolução de faturamento** ano a ano em diferentes regiõ
 
 
 ###  Medida: `Crescimento Acumulado Anual`
-
+---
+````
 Crescimento Acumulado Anual = 
 VAR Crescimento = 
     DIVIDE(
+        [Faturamento YTD] - [Faturamento YTD LY],
+        [Faturamento YTD LY]
+    )
+RETURN
+IF(
+    HASONEVALUE(dCalendario[Ano]),
+    COALESCE(Crescimento, 0)
+)
+````
 Compara o faturamento acumulado no ano atual (YTD) com o mesmo período do ano anterior (YTD LY)
 
 Retorna o crescimento percentual
@@ -461,8 +471,10 @@ COALESCE previne retorno vazio
 História visual que revela **qual categoria teve a maior mudança percentual e em valor monetário** no faturamento entre os anos de 2017 e 2018. Ideal para relatórios gerenciais ou dashboards executivos.
 
 ### Texto " A categoria # realizou # em vendas o que representa um aumento de # em relação ao ano anterior."
+---
 
 ###  Medida **Categoria com maior variação**
+---
 ````
 Categoria com maior variação = 
 VAR TabelaVariacao = 
@@ -483,6 +495,7 @@ VAR Percentual2017 =
     )
 ````
 ### Medida **Valor Variação Categoria Maior Crescimento**
+---
 ````
 Valor Variação Categoria Maior Crescimento = 
 VAR TabelaVariacao = 
@@ -505,6 +518,7 @@ RETURN
 
 
 ### Medida **Valor % Variação Categoria Maior Crescimento**
+---
 ````
 Valor % Variação Categoria Maior Crescimento = 
 VAR TabelaVariacao = 
@@ -531,7 +545,7 @@ Retorna variação positiva ou negativa
 Narrativa visual que destaca o mercado mais afetado pela queda de faturamento de desktops, com base na análise ano a ano e impacto na representatividade global.
 
 ###  Medida Subcategoria Maior Queda
-
+---
 ```
 Subcategoria Maior Queda = 
 CALCULATE(
@@ -555,6 +569,7 @@ CALCULATE(
 )
 ````
 ### Medida Variação Representatividade Desktops
+---
 ````
 Variação Representatividade Desktops = 
 VAR Rep2018 = 
@@ -578,6 +593,7 @@ Usa uma medida pré-existente: % Representatividade Desktops
 Valor negativo indica perda de relevância
 ````
 ### Medida Continente Maior Queda Desktops
+---
 ````
 Continente Maior Queda Desktops = 
 CALCULATE(
@@ -608,7 +624,7 @@ Retorna o nome do continente
 
 
 ### Medida Variação % Representatividade Desktops
-
+---
 ````
 Variação % Representatividade Desktops = 
 VAR Rep2017 = 
@@ -650,12 +666,14 @@ Componentes de interatividade que facilitam a exploração do relatório por ano
 
 
 ####  Slicer de Ano
+---
 
 - Campo: `dCalendario[Ano]`
 - Tipo: ***Dropdown** 
 - Valores fixos: 2017, 2018, 2019
 
 ####  Slicer de Continente
+---
 
 - Campo: `dLocalizacao[Continente]`
 - Tipo: ***Dropdown** 
@@ -663,6 +681,7 @@ Componentes de interatividade que facilitam a exploração do relatório por ano
 
 
 ####  Slicer de Categoria
+---
 
 - Campo: `dSubcategoria[Categoria]`
 - Tipo: ***Dropdown** 
@@ -670,6 +689,7 @@ Componentes de interatividade que facilitam a exploração do relatório por ano
 ---
 
 ####  Botões de Navegação
+---
 
 - Objetivo: Alternar entre páginas de forma elegante e guiada
 - Componentes:
@@ -685,6 +705,7 @@ Componentes de interatividade que facilitam a exploração do relatório por ano
   - Posicionamento: área superior a esquerda
  
 ####  Botão de Informação
+---
   - Objetivo: Oeientar ao usuário sobre o detalhameneto de informações com o tooltip
   - Componente:
     - Botão " i" > abre uma visualização explicativa 
