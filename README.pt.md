@@ -90,36 +90,39 @@ Continente Maior Queda Desktops: continente com maior queda absoluta em Desktops
 
 ### 6. Avaliação – Respostas às Perguntas do Case
 #### Exploratório
-Faturamento total do período: R$ 171M
+Considerando que o ano de 2019 ainda estava em curso durante a análise
 
-Meta de faturamento: R$ 205,02M
+Faturamento total do período: Total R$ 171M (2017: R$67M; 2018: R$85M; 2019: R$19M)
 
-% de atendimento da meta: 83,59%
+Meta de faturamento: Total R$ 205,02M (2017: R$74,36M; 2018: R$80,73M; 2019: R$49,93M)
+
+% de atendimento da meta: Total 83,59% (2017: 90,37%; 2018: 105,88%; 2019: 37,47%)
 
 Categoria com maior faturamento: Computers
 
-Representatividade da categoria líder: 74,33%
+Representatividade da categoria líder: 70,22%
 
-Top 3 subcategorias por faturamento: Desktops, Celulares, Acessórios
+Top 3 subcategorias por faturamento: Projectors & Screens, Laptops, Deescktops
 
 Ranking de continentes por faturamento nas 3 subcategorias: América do Norte, Europa, Ásia
 
 Comparativo 2017 vs 2018
-Variação de faturamento entre 2018 e 2017: +12,4%
 
-Variação positiva em todas as subcategorias? Não. Desktops apresentaram queda.
+Variação de faturamento entre 2018 e 2017: +27,19%
 
-Variação de representatividade da subcategoria Desktops: −8,2%
+Variação positiva em todas as subcategorias? Sim
 
-Continente responsável pela queda em Desktops: América do Norte
+Variação de representatividade da subcategoria Desktops: -4,23%
 
-Categoria com maior faturamento em 2018: Tecnologia – R$ 520.000,00
+Continente responsável pela queda em Desktops: Europa
 
-Categoria com maior variação percentual entre 2017 e 2018: Móveis – +18,7%
+Categoria com maior faturamento em 2018: Computers – R$ 60M
 
-Top 3 subcategorias em 2018: Celulares, Acessórios, Impressoras
+Categoria com maior variação percentual entre 2017 e 2018: TV Video +12,34% de aumento nas vendas
 
-As mesmas subcategorias lideram em todos os períodos? Parcialmente. Desktops lideraram em 2017, mas perderam posição em 2018.
+Top 3 subcategorias em 2018:  Projectors & Screens, Laptops, Deescktops
+
+As mesmas subcategorias lideram em todos os períodos? sim
 
 ### 7. Implantação
 O painel foi publicado no Power BI Online com acesso público. A estrutura permite atualização automatizada via Power Query. 
