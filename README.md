@@ -1,62 +1,153 @@
-#  Análises Macro - Case Directy
+# Sales vs Targets Challenge / Case Directy
 
-O painel desenvolvido foi estruturado para responder de forma clara e objetiva às questões abaixo, permitindo navegação fluida e extração de insights por meio de filtros dinâmicos.
+## Introduction
 
-###  Exploratório
+This project was developed as part of the analytical challenge “Sales vs Targets,” with the objective of building an interactive Power BI dashboard capable of answering strategic questions about the commercial performance of a retail company — Case Directy. The analysis covers the years 2017 and 2018, focusing on revenue targets, variations by category and subcategory, and geographic distribution of sales.
 
-- **Qual foi o faturamento de todo o período?**
-- **Qual era a meta de faturamento deste período?**
-- **Qual foi o percentual de atendimento da meta?**
-- **Qual foi a categoria com maior faturamento?**
-- **O quanto esta categoria representa no total do faturamento, em percentual?**
-- **Quais foram as 3 subcategorias com maior faturamento?**
-- **Considerando estas mesmas 3 subcategorias, indique os continentes, do maior para o menor faturamento.**
+The solution was built using unstructured data, cleaned and modeled in Power Query, and organized into a star-schema dimensional structure. Analytical measures were developed in DAX, with emphasis on the use of the `TREATAS` function to integrate targets without a physical relationship between tables.
 
-###  Comparativo Entre os Anos (2017 vs 2018)
-
-- **Qual foi a variação entre o faturamento de 2018 e o ano anterior?**
-- **A variação entre o faturamento de 2018 e o ano anterior foi positiva em todas as subcategorias?**
-- **Qual foi o percentual de variação de representatividade entre 2018 e o ano anterior na subcategoria *Desktops*?**
-- **Qual foi o continente responsável por essa queda de faturamento na subcategoria *Desktops*?**
-- **Qual foi a categoria com o maior faturamento em 2018? Qual o valor em R$?**
-- **Qual foi a categoria com a maior variação percentual entre 2017 e 2018?**
-- **Quais foram as 3 subcategorias com maior faturamento em 2018?**
-- **São as mesmas subcategorias em destaque considerando todos os períodos?**
+The final dashboard enables time-based segmentation, period comparisons, hierarchical analysis by product and region, and narrative visualizations that directly address the case questions. The documentation below outlines each stage of the project following the CRISP-DM framework.
 
 ---
 
-##  Link Público do Dashboard
+## 1. Business Understanding
 
- [Acesse o dashboard publicado no Power BI Online](https://app.powerbi.com/view?r=eyJrIjoiNDY1ZTVkMTEtODU4ZC00NjlkLTg2MWUtMmQxZGRhNzdlYmFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
+The primary objective was to evaluate Directy's commercial performance against established targets, focusing on:
 
----
+- Revenue by period, category, and subcategory
+- Comparison between 2017 and 2018
+- Identification of significant regional variations
+- Detection of critical declines and growth by product
 
-##  Ilustrações do Painel
-
-### Preview 1
-![Screenshot do Dashboard - Visão Geral](https://github.com/user-attachments/assets/700f4273-4ff0-4183-8b6c-0b1d4eeab054
-)
-
-
-### Preview 2
-![Screenshot do Dashboard - Análise Comparativa](https://github.com/user-attachments/assets/1608bd87-b6d3-4e16-bde0-a5a541f254d1
-)
+The questions provided in the case served as a guide for building the dashboard.
 
 ---
 
-##  Solução Técnica: Evitando Duplicações com TREATAS
+## 2. Data Understanding
 
-Durante o desenvolvimento, foi identificado que as metas estavam sendo duplicadas ao aplicar filtros por Ano. Isso ocorreu pela ausência de relacionamento direto entre a tabela de calendário (`dCalendario`) e a tabela de metas consolidadas (`fMetasConsolidadas`).
+Data sources included CSV files and spreadsheets with heterogeneous structures. Key files processed:
 
-Para solucionar, foi utilizada a função `TREATAS` no DAX:
+- `Produto.csv`: mixed data with brand, product, and subcategory in textual format
+- `Localizacao.csv`: combined and duplicated fields
+- `Subcategoria.csv`: flat structure, converted into a relational table
+- `Clientes.csv`: individual and corporate client data with asymmetric columns
+- `fMetasConsolidadas`: targets by year and continent, originally in matrix layout
+- `Vendas.csv`: transactional base with generic columns and invalid records
 
-```DAX
-Meta Total por Ano = 
-CALCULATE(
-    SUM('fMetasConsolidadas'[Value]),
-    'fMetasConsolidadas'[Categoria] <> "Total",
-    TREATAS(VALUES(dCalendario[Ano]), 'fMetasConsolidadas'[Ano])  
-)
+---
 
+## 3. Data Preparation
 
+Transformations were performed in Power Query, focusing on standardization, referential integrity, and automation:
+
+- Removal of blank rows and invalid records
+- Separation of combined fields using delimiters
+- Type conversion with locale settings (e.g., Brazilian dates)
+- Creation of derived columns for segmentation (e.g., region, client type)
+- Standardization of naming conventions and tabular structure
+- File unification by year using Append Queries
+- Selective unpivoting to convert columns into rows
+
+---
+
+## 4. Modeling
+
+A star-schema structure was adopted, with the fact table `fVendas` centralizing transactions and connected to:
+
+- `dCalendario`: time-based segmentation
+- `dProduto`: link to subcategory and category
+- `dLocalizacao`: geographic hierarchy
+- `dCliente`: demographic profile
+- `dSubcategoria`: commercial grouping
+
+Analytical measures were organized in the **Measures** table. The `fMetasConsolidadas` table was integrated via DAX using `TREATAS`.
+
+---
+
+## 5. Analytical Modeling – DAX Measures
+
+Key measures developed:
+
+- `Faturamento Total`: total revenue
+- `Meta Total por Ano`: target by year using `TREATAS`
+- `% Atingimento da Meta`: revenue vs target
+- `% Cresc YoY`: year-over-year growth
+- `Categoria Campeã`: top category by revenue
+- `% Categoria Campeã`: share of top category
+- `% Faturamento SubCategoria`: subcategory share
+- `Variação % Categoria 2018vs2017`: category variation
+- `Continente Maior Queda Desktops`: continent with largest drop in Desktops
+
+---
+
+## 6. Evaluation – Case Question Responses
+
+### Exploratory Analysis  
+*Note: 2019 was still in progress during the analysis.*
+
+- **Total revenue**: R$ 171M  
+  (2017: R$ 67M; 2018: R$ 85M; 2019: R$ 19M)
+- **Revenue target**: R$ 205.02M  
+  (2017: R$ 74.36M; 2018: R$ 80.73M; 2019: R$ 49.93M)
+- **% target achievement**: 83.59% overall  
+  (2017: 90.37%; 2018: 105.88%; 2019: 37.47%)
+- **Top category**: Computers
+- **Top category share**: 70.22%
+- **Top 3 subcategories**: Projectors & Screens, Laptops, Desktops
+- **Top continents in subcategories**: North America, Europe, Asia
+
+### 2017 vs 2018 Comparison
+
+- Revenue variation: +27.19%
+- Positive variation in all subcategories: Yes
+- Change in Desktops representativity: –4.23%
+- Continent responsible for decline in Desktops: Europe
+- Top category in 2018: Computers – R$ 60M
+- Category with highest growth: TV Video (+12.34%)
+- Top 3 subcategories in 2018: Projectors & Screens, Laptops, Desktops
+- Same subcategories lead in all periods: Yes
+
+---
+
+## 7. Deployment
+
+The dashboard was published to Power BI Online with public access. It supports automated updates via Power Query.
+
+---
+
+## Public Dashboard Link
+
+[View the dashboard on Power BI Online](https://app.powerbi.com/view?r=eyJrIjoiNDY1ZTVkMTEtODU4ZC00NjlkLTg2MWUtMmQxZGRhNzdlYmFlIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9)
+
+---
+
+## Dashboard Illustrations
+
+### Cover  
+![Dashboard Screenshot – Overview](https://github.com/user-attachments/assets/89282b90-62c3-402a-8086-5b0855145e26)
+
+### General Overview  
+![Dashboard Screenshot – Comparative Analysis](https://github.com/user-attachments/assets/b5cb1c9e-b442-4953-a3e6-628a9344c016)
+
+### Sales Panorama  
+![Dashboard Screenshot – Comparative Analysis](https://github.com/user-attachments/assets/44c1f6cb-a1ae-4b79-a2fe-05f7a216626a)
+
+---
+
+## Interactive Components
+
+- Slicers by year, category, and continent
+- Navigation buttons across thematic pages
+- Tooltips with detailed metrics and expandable explanatory text
+- Visual stories highlighting critical variations
+
+---
+
+## 8. Technical Considerations
+
+- DAX measures optimized using `DIVIDE`, `CALCULATE`, `SUMX`, `TOPN`, `MAXX`
+- Use of `TREATAS` for integration without physical relationships
+- Context-driven visualizations: bar charts, donut charts, cross matrices, bubble maps
+- Full documentation of Power Query transformations
+- Modular and scalable structure for future periods or variables
 
