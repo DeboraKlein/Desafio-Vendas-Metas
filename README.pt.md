@@ -136,13 +136,18 @@ O painel foi publicado no Power BI Online com acesso público. A estrutura permi
 
 ####  Ilustrações do Painel
 
-#### Preview 1
-![Screenshot do Dashboard - Visão Geral](https://github.com/user-attachments/assets/700f4273-4ff0-4183-8b6c-0b1d4eeab054
+#### Capa
+![Screenshot do Dashboard - Visão Geral](https://github.com/user-attachments/assets/0e27ddaa-5854-417d-a615-987e922fce1d
 )
 
 
-#### Preview 2
-![Screenshot do Dashboard - Análise Comparativa](https://github.com/user-attachments/assets/1608bd87-b6d3-4e16-bde0-a5a541f254d1
+#### Visão Geral
+![Screenshot do Dashboard - Análise Comparativa](https://github.com/user-attachments/assets/fe450427-4d23-4e1f-89fb-eb08740241b3
+)
+
+
+#### Panorama de vendas
+![Screenshot do Dashboard - Análise Comparativa](https://github.com/user-attachments/assets/72ca3341-16a3-4015-b8fd-737328d3d83d
 )
 
 ---
